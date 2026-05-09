@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>靈魂手作療癒</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #faf7f2;
+    --dusty-rose: #d4a5a0;
+    --terracotta: #c4785a;
+    --sage: #8fa68a;
+    --lavender: #b8a9c9;
+    --gold: #c9a96e;
+    --deep: #2d2420;
+    --mid: #5c4a42;
+    --light-mid: #8a7268;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--deep);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    background: var(--cream);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 30%, rgba(212,165,160,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 70%, rgba(184,169,201,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(201,169,110,0.1) 0%, transparent 70%);
+    animation: bgPulse 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgPulse {
+    0%   { opacity: 0.7; transform: scale(1); }
+    100% { opacity: 1;   transform: scale(1.05); }
+  }
+
+  /* Floating orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: float linear infinite;
+    pointer-events: none;
+  }
+  .orb-1 { width: 200px; height: 200px; background: rgba(212,165,160,0.3); top: 10%; left: 5%; animation-duration: 18s; }
+  .orb-2 { width: 150px; height: 150px; background: rgba(143,166,138,0.25); top: 60%; right: 8%; animation-duration: 22s; animation-delay: -7s; }
+  .orb-3 { width: 100px; height: 100px; background: rgba(184,169,201,0.3); bottom: 15%; left: 20%; animation-duration: 16s; animation-delay: -4s; }
+  .orb-4 { width: 120px; height: 120px; background: rgba(201,169,110,0.2); top: 30%; right: 20%; animation-duration: 20s; animation-delay: -10s; }
+
+  @keyframes float {
+    0%   { transform: translate(0,0) scale(1); }
+    25%  { transform: translate(30px,-20px) scale(1.05); }
+    50%  { transform: translate(-15px,30px) scale(0.95); }
+    75%  { transform: translate(20px,10px) scale(1.02); }
+    100% { transform: translate(0,0) scale(1); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+  }
+
+  .hero-badge {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: var(--terracotta);
+    letter-spacing: 0.3em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--deep);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.6s forwards;
+  }
+
+  .hero-title span {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.5em;
+    color: var(--light-mid);
+    letter-spacing: 0.3em;
+    margin-top: 0.3em;
+  }
+
+  .hero-tagline {
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    color: var(--mid);
+    line-height: 2;
+    max-width: 440px;
+    margin: 0 auto 3rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 0.9rem 2.8rem;
+    border: 1px solid var(--terracotta);
+    color: var(--terracotta);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    transition: all 0.4s ease;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--terracotta);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    z-index: -1;
+  }
+
+  .hero-cta:hover { color: var(--warm-white); }
+  .hero-cta:hover::before { transform: translateX(0); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.5s forwards;
+  }
+
+  .scroll-hint span {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--light-mid);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--terracotta), transparent);
+    animation: scrollDown 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollDown {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    50%  { transform: scaleY(1); transform-origin: top; }
+    51%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+  }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    color: var(--terracotta);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--deep);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── PHILOSOPHY ── */
+  .philosophy {
+    background: var(--warm-white);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .philosophy-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 700px) {
+    .philosophy-layout { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  .philosophy-text p {
+    font-size: 1rem;
+    line-height: 2.2;
+    color: var(--mid);
+    margin-bottom: 1.2rem;
+  }
+
+  .philosophy-text p strong {
+    color: var(--deep);
+    font-weight: 400;
+  }
+
+  .philosophy-art {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mandala {
+    width: 220px;
+    height: 220px;
+    animation: rotateSlow 30s linear infinite;
+  }
+
+  @keyframes rotateSlow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* ── OFFERINGS ── */
+  .offerings {
+    background: var(--cream);
+  }
+
+  .offerings-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+
+  .offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .offering-card {
+    background: var(--warm-white);
+    padding: 2.5rem 2rem;
+    border-radius: 2px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .offering-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--terracotta);
+    transition: height 0.4s ease;
+  }
+
+  .offering-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(44,36,32,0.08); }
+  .offering-card:hover::before { height: 100%; }
+
+  .offering-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .offering-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.05rem;
+    color: var(--deep);
+    margin-bottom: 0.6rem;
+    font-weight: 400;
+  }
+
+  .offering-desc {
+    font-size: 0.85rem;
+    color: var(--light-mid);
+    line-height: 1.9;
+  }
+
+  /* ── QUOTE BREAK ── */
+  .quote-break {
+    background: var(--deep);
+    text-align: center;
+    padding: clamp(5rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-break::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 40%, rgba(212,165,160,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 70% 60%, rgba(184,169,201,0.1) 0%, transparent 60%);
+  }
+
+  .quote-text {
+    position: relative;
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 2.2;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+  }
+
+  .quote-text em {
+    color: var(--dusty-rose);
+    font-style: normal;
+  }
+
+  .quote-author {
+    position: relative;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+  }
+
+  /* ── CANDLE SECTION ── */
+  .candle-section {
+    background: var(--warm-white);
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 700px) {
+    .candle-section { grid-template-columns: 1fr; gap: 3rem; }
+    .candle-visual { order: -1; }
+  }
+
+  .candle-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .candle-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .flame {
+    width: 18px;
+    height: 30px;
+    background: radial-gradient(ellipse at 50% 80%, #ffd580, #ff9a3c, #e85d04);
+    border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+    margin-bottom: -3px;
+    animation: flicker 1.5s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 8px rgba(255,154,60,0.8));
+  }
+
+  .flame-glow {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,200,100,0.3), transparent 70%);
+    position: absolute;
+    top: -15px;
+    animation: glowPulse 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes flicker {
+    0%  { transform: scaleX(1) scaleY(1) rotate(-2deg); }
+    100%{ transform: scaleX(0.85) scaleY(1.1) rotate(2deg); }
+  }
+
+  @keyframes glowPulse {
+    0%  { opacity: 0.6; transform: scale(1); }
+    100%{ opacity: 1; transform: scale(1.3); }
+  }
+
+  .candle-body {
+    width: 60px;
+    height: 140px;
+    background: linear-gradient(135deg, #f5e6d0, #e8d0b0, #d4b896);
+    border-radius: 4px 4px 6px 6px;
+    position: relative;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.1);
+  }
+
+  .candle-body::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background: linear-gradient(to right, rgba(255,255,255,0.3) 0%, transparent 40%);
+    border-radius: inherit;
+  }
+
+  .candle-text p {
+    font-size: 1rem;
+    line-height: 2.2;
+    color: var(--mid);
+    margin-bottom: 1.2rem;
+  }
+
+  /* ── CRYSTAL SECTION ── */
+  .crystal-section {
+    background: linear-gradient(160deg, #f0eaf5, #ede8f5, #e8f0ec);
+    text-align: center;
+    padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+  }
+
+  .crystal-grid {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin: 3rem 0;
+  }
+
+  .crystal-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .crystal-gem {
+    width: 60px;
+    height: 70px;
+    position: relative;
+  }
+
+  .crystal-gem svg {
+    width: 100%;
+    height: 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .crystal-gem:nth-child(1) svg { animation-delay: 0s; }
+  .crystal-item:nth-child(2) .crystal-gem svg { animation-delay: 0.5s; }
+  .crystal-item:nth-child(3) .crystal-gem svg { animation-delay: 1s; }
+  .crystal-item:nth-child(4) .crystal-gem svg { animation-delay: 1.5s; }
+
+  @keyframes shimmer {
+    0%, 100% { filter: brightness(1) drop-shadow(0 0 4px rgba(184,169,201,0.5)); }
+    50%       { filter: brightness(1.2) drop-shadow(0 0 12px rgba(184,169,201,0.9)); }
+  }
+
+  .crystal-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: var(--mid);
+  }
+
+  .crystal-desc {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 2.2;
+    color: var(--mid);
+  }
+
+  /* ── INCLUSIVE MESSAGE ── */
+  .inclusive {
+    background: var(--warm-white);
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: center;
+    padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+  }
+
+  .inclusive .section-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    margin-bottom: 2rem;
+  }
+
+  .inclusive p {
+    font-size: 1.05rem;
+    line-height: 2.4;
+    color: var(--mid);
+    margin-bottom: 1.5rem;
+  }
+
+  .inclusive-highlight {
+    display: inline-block;
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    color: var(--deep);
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 0.3rem;
+    margin: 1rem 0;
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    background: var(--cream);
+    text-align: center;
+    padding: clamp(5rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing::before {
+    content: '靈魂';
+    position: absolute;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20vw;
+    color: rgba(44,36,32,0.03);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .closing-content {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .closing p {
+    font-size: 1rem;
+    line-height: 2.4;
+    color: var(--mid);
+    margin-bottom: 1.5rem;
+  }
+
+  .closing-brand {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--deep);
+    letter-spacing: 0.15em;
+    margin: 2.5rem 0 1rem;
+  }
+
+  .closing-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--terracotta);
+    font-size: 1.05rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 3rem;
+  }
+
+  .closing-cta {
+    display: inline-block;
+    padding: 1rem 3.5rem;
+    background: var(--terracotta);
+    color: var(--warm-white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+  }
+
+  .closing-cta:hover {
+    background: var(--deep);
+    letter-spacing: 0.3em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    color: var(--light-mid);
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  footer span {
+    color: var(--dusty-rose);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  nav.scrolled {
+    background: rgba(250,247,242,0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 20px rgba(44,36,32,0.06);
+  }
+
+  .nav-brand {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1rem;
+    color: var(--deep);
+    letter-spacing: 0.15em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--terracotta); }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    nav { padding: 1.5rem 1.5rem; }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 200px;
+    margin: 0 auto 2rem;
+  }
+
+  .divider-line { flex: 1; height: 1px; background: var(--dusty-rose); opacity: 0.5; }
+  .divider-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--terracotta); }
+
+  /* Section wrapper for centered content */
+  .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-brand" href="#">靈魂手作療癒</a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">理念</a></li>
+    <li><a href="#offerings">課程體驗</a></li>
+    <li><a href="#candle">香氛</a></li>
+    <li><a href="#contact">聯絡我們</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+
+  <div class="hero-content">
+    <p class="hero-badge">Soul Handcraft Healing</p>
+    <h1 class="hero-title">
+      靈魂手作療癒
+      <span>藝術 · 香氛 · 心靈</span>
+    </h1>
+    <p class="hero-tagline">
+      在創作中，慢慢釋放情緒、沉澱思緒，<br>
+      找回內在的平靜與能量。
+    </p>
+    <a href="#philosophy" class="hero-cta">探索療癒之旅</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>向下探索</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy" style="padding: clamp(5rem,10vw,10rem) clamp(1.5rem,5vw,4rem);">
+  <div class="section-inner">
+    <div class="philosophy-layout">
+      <div class="philosophy-text reveal">
+        <p class="section-label">Our Philosophy</p>
+        <h2 class="section-title">真正的療癒，<br>是回到自己</h2>
+        <p>我們相信，<strong>真正的療癒，不只是放鬆，</strong><br>而是讓人在忙碌與壓力之中，<br>重新回到自己的內心。</p>
+        <p>透過手作與藝術創作，每一位來到這裡的人，都能在創作中慢慢釋放情緒、沉澱思緒，找回內在的平靜與能量。</p>
+      </div>
+      <div class="philosophy-art reveal reveal-delay-2">
+        <!-- Mandala SVG -->
+        <svg class="mandala" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="110" cy="110" r="100" stroke="#d4a5a0" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="110" cy="110" r="80" stroke="#c9a96e" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="110" cy="110" r="60" stroke="#b8a9c9" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="110" cy="110" r="40" stroke="#8fa68a" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="110" cy="110" r="20" stroke="#c4785a" stroke-width="0.8" opacity="0.6"/>
+          <!-- Petal pattern -->
+          <g opacity="0.5">
+            <ellipse cx="110" cy="50" rx="8" ry="16" fill="none" stroke="#d4a5a0" stroke-width="0.8"/>
+            <ellipse cx="110" cy="170" rx="8" ry="16" fill="none" stroke="#d4a5a0" stroke-width="0.8"/>
+            <ellipse cx="50" cy="110" rx="16" ry="8" fill="none" stroke="#d4a5a0" stroke-width="0.8"/>
+            <ellipse cx="170" cy="110" rx="16" ry="8" fill="none" stroke="#d4a5a0" stroke-width="0.8"/>
+            <ellipse cx="67" cy="67" rx="8" ry="16" fill="none" stroke="#b8a9c9" stroke-width="0.8" transform="rotate(45 67 67)"/>
+            <ellipse cx="153" cy="67" rx="8" ry="16" fill="none" stroke="#b8a9c9" stroke-width="0.8" transform="rotate(-45 153 67)"/>
+            <ellipse cx="67" cy="153" rx="8" ry="16" fill="none" stroke="#b8a9c9" stroke-width="0.8" transform="rotate(-45 67 153)"/>
+            <ellipse cx="153" cy="153" rx="8" ry="16" fill="none" stroke="#b8a9c9" stroke-width="0.8" transform="rotate(45 153 153)"/>
+          </g>
+          <!-- Outer decorative dots -->
+          <g fill="#c9a96e" opacity="0.6">
+            <circle cx="110" cy="10" r="2.5"/>
+            <circle cx="180" cy="40" r="2"/>
+            <circle cx="210" cy="110" r="2.5"/>
+            <circle cx="180" cy="180" r="2"/>
+            <circle cx="110" cy="210" r="2.5"/>
+            <circle cx="40" cy="180" r="2"/>
+            <circle cx="10" cy="110" r="2.5"/>
+            <circle cx="40" cy="40" r="2"/>
+          </g>
+          <circle cx="110" cy="110" r="6" fill="#c4785a" opacity="0.7"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERINGS -->
+<section id="offerings" class="offerings">
+  <div class="offerings-header reveal">
+    <p class="section-label">Experiences</p>
+    <h2 class="section-title">探索每一種創作的可能</h2>
+    <p style="color: var(--mid); line-height: 1.9; font-size: 0.95rem;">不需要任何基礎，只需要願意靜下來，跟著自己的感覺創作。</p>
+  </div>
+  <div class="offerings-grid">
+    <div class="offering-card reveal reveal-delay-1">
+      <span class="offering-icon">🌊</span>
+      <div class="offering-name">流體藝術</div>
+      <div class="offering-desc">讓色彩在畫布上自由流動，放下控制，感受每一次顏料交融的驚喜與美麗。</div>
+    </div>
+    <div class="offering-card reveal reveal-delay-2">
+      <span class="offering-icon">☸️</span>
+      <div class="offering-name">曼陀羅</div>
+      <div class="offering-desc">在幾何與對稱中，找到內心的秩序與平靜，每一筆都是與自我的對話。</div>
+    </div>
+    <div class="offering-card reveal reveal-delay-3">
+      <span class="offering-icon">🎨</span>
+      <div class="offering-name">粉彩藝術</div>
+      <div class="offering-desc">柔軟的粉彩筆觸，輕輕抹去日常的銳利，以溫柔的方式表達內在情感。</div>
+    </div>
+    <div class="offering-card reveal reveal-delay-4">
+      <span class="offering-icon">💎</span>
+      <div class="offering-name">水晶創作</div>
+      <div class="offering-desc">結合水晶的能量頻率，創作出屬於自己的療癒作品，連結直覺與內心。</div>
+    </div>
+    <div class="offering-card reveal reveal-delay-1">
+      <span class="offering-icon">✨</span>
+      <div class="offering-name">環氧樹脂</div>
+      <div class="offering-desc">將美好的瞬間封存於透明之中，創作出獨一無二的立體療癒藝術作品。</div>
+    </div>
+    <div class="offering-card reveal reveal-delay-2">
+      <span class="offering-icon">🖋️</span>
+      <div class="offering-name">酒精墨水</div>
+      <div class="offering-desc">鮮豔的色彩在光滑表面綻放，如同情緒的流動，自然而充滿生命力。</div>
+    </div>
+    <div class="offering-card reveal reveal-delay-3">
+      <span class="offering-icon">🌿</span>
+      <div class="offering-name">植物療癒</div>
+      <div class="offering-desc">透過植物的能量與香氣，重新連結大地，感受自然帶來的寧靜療癒力。</div>
+    </div>
+    <div class="offering-card reveal reveal-delay-4">
+      <span class="offering-icon">🕯️</span>
+      <div class="offering-name">香氛蠟燭</div>
+      <div class="offering-desc">親手調製屬於自己的香氣，點燃的不只是燭光，更是生活中的療癒儀式。</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE BREAK -->
+<section class="quote-break">
+  <div class="quote-text reveal">
+    療癒，<br>
+    從來都不是把自己變得完美，<br>
+    而是學會<em>溫柔地接住</em><br>
+    每一個真實的自己。
+  </div>
+  <div class="divider reveal reveal-delay-2">
+    <div class="divider-line"></div>
+    <div class="divider-dot"></div>
+    <div class="divider-line"></div>
+  </div>
+  <p class="quote-author reveal reveal-delay-3">— 靈魂手作療癒</p>
+</section>
+
+<!-- CANDLE -->
+<section id="candle" style="padding: clamp(5rem,10vw,10rem) clamp(1.5rem,5vw,4rem);">
+  <div class="section-inner">
+    <div class="candle-section">
+      <div class="candle-text reveal">
+        <p class="section-label">Aromatherapy</p>
+        <h2 class="section-title">一支蠟燭，<br>一場療癒儀式</h2>
+        <p>香氛蠟燭，不只是香味，更像是一種生活裡的療癒儀式。</p>
+        <p>點燃燭光的那一刻，不只是空間被香氣填滿，而是讓<strong>疲憊的心，也能有一個喘息與放鬆的地方。</strong></p>
+      </div>
+      <div class="candle-visual reveal reveal-delay-2">
+        <div class="candle-wrapper">
+          <div class="flame-glow"></div>
+          <div class="flame"></div>
+          <div class="candle-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRYSTAL -->
+<section class="crystal-section">
+  <div class="reveal">
+    <p class="section-label">Crystal Energy</p>
+    <h2 class="section-title">水晶與色彩能量</h2>
+  </div>
+  <div class="crystal-grid">
+    <div class="crystal-item reveal reveal-delay-1">
+      <div class="crystal-gem">
+        <svg viewBox="0 0 60 70" fill="none">
+          <polygon points="30,5 55,25 55,50 30,65 5,50 5,25" fill="rgba(212,165,160,0.4)" stroke="#d4a5a0" stroke-width="1.5"/>
+          <polygon points="30,5 55,25 30,35" fill="rgba(212,165,160,0.2)" stroke="#d4a5a0" stroke-width="0.5"/>
+          <polygon points="30,5 5,25 30,35" fill="rgba(255,255,255,0.3)" stroke="#d4a5a0" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <span class="crystal-label">玫瑰石英</span>
+    </div>
+    <div class="crystal-item reveal reveal-delay-2">
+      <div class="crystal-gem">
+        <svg viewBox="0 0 60 70" fill="none">
+          <polygon points="30,5 55,25 55,50 30,65 5,50 5,25" fill="rgba(184,169,201,0.4)" stroke="#b8a9c9" stroke-width="1.5"/>
+          <polygon points="30,5 55,25 30,35" fill="rgba(184,169,201,0.2)" stroke="#b8a9c9" stroke-width="0.5"/>
+          <polygon points="30,5 5,25 30,35" fill="rgba(255,255,255,0.3)" stroke="#b8a9c9" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <span class="crystal-label">紫水晶</span>
+    </div>
+    <div class="crystal-item reveal reveal-delay-3">
+      <div class="crystal-gem">
+        <svg viewBox="0 0 60 70" fill="none">
+          <polygon points="30,5 55,25 55,50 30,65 5,50 5,25" fill="rgba(143,166,138,0.4)" stroke="#8fa68a" stroke-width="1.5"/>
+          <polygon points="30,5 55,25 30,35" fill="rgba(143,166,138,0.2)" stroke="#8fa68a" stroke-width="0.5"/>
+          <polygon points="30,5 5,25 30,35" fill="rgba(255,255,255,0.3)" stroke="#8fa68a" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <span class="crystal-label">綠幽靈</span>
+    </div>
+    <div class="crystal-item reveal reveal-delay-4">
+      <div class="crystal-gem">
+        <svg viewBox="0 0 60 70" fill="none">
+          <polygon points="30,5 55,25 55,50 30,65 5,50 5,25" fill="rgba(201,169,110,0.4)" stroke="#c9a96e" stroke-width="1.5"/>
+          <polygon points="30,5 55,25 30,35" fill="rgba(201,169,110,0.2)" stroke="#c9a96e" stroke-width="0.5"/>
+          <polygon points="30,5 5,25 30,35" fill="rgba(255,255,255,0.3)" stroke="#c9a96e" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <span class="crystal-label">黃水晶</span>
+    </div>
+  </div>
+  <p class="crystal-desc reveal">
+    水晶與色彩能量，像是一種<strong>溫柔的陪伴</strong>，透過不同的能量頻率與創作方式，幫助我們更認識自己、感受自己，也讓內心被慢慢照亮。
+  </p>
+</section>
+
+<!-- INCLUSIVE -->
+<section class="inclusive">
+  <div class="reveal">
+    <p class="section-label">For Everyone</p>
+    <h2 class="section-title">你不需要很會畫畫</h2>
+    <p>在這裡，你不需要很會畫畫、很有天份，</p>
+    <p>只需要願意靜下來，跟著自己的感覺創作。</p>
+    <span class="inclusive-highlight">因為療癒，從來都屬於每一個人。</span>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section id="contact" class="closing">
+  <div class="closing-content">
+    <div class="reveal">
+      <p class="section-label">Find Your Light</p>
+    </div>
+    <p class="reveal reveal-delay-1">
+      靈魂手作療癒，希望透過每一次創作、每一道香氣、每一份能量，陪伴更多人在生活裡找到屬於自己的微光與平衡。
+    </p>
+    <p class="reveal reveal-delay-2">
+      無論你現在在哪裡、正在經歷什麼，這裡永遠為你留著一個位置。
+    </p>
+    <div class="closing-brand reveal reveal-delay-3">靈魂手作療癒</div>
+    <div class="closing-tagline reveal reveal-delay-3">Soul Handcraft Healing</div>
+    <a href="#" class="closing-cta reveal reveal-delay-4" id="contact">預約體驗課程</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>靈魂手作療癒</span> · 用創作，陪你找回自己</p>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
